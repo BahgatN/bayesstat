@@ -1,5 +1,6 @@
 ---
 title: "Crash course in Bayesian inference"
+author: "Bahgat Nassour"
 output: html_document
 ---
 
