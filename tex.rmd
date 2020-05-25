@@ -16,7 +16,7 @@ $$ P(\theta|x) = \frac{P(\theta)P(x|\theta)}{P(x)} $$
 let $f ()$ denote a probability or a probability density function then 
 $$ f(\theta|x) = \frac{f(\theta)f(x|\theta)}{f(x)} =  \frac{f(\theta)L(\theta;x)}{\int f(\theta)f(x|\theta)d\theta} $$
 \newline
-Under this formula we can see the first fundamental difference between the Bayesian approach and the frequentist approach, in Bayesian inference we treat the data $x$ as fixed and the parameter of interest $\theta$ as random variable, that means $\theta$ has a distubrtion.
+Under this formula we can see the first fundamental difference between the Bayesian approach and the frequentist approach, in Bayesian inference we treat the data $x$ as fixed and the parameter of interest $\theta$ as random variable, that means $\theta$ has a distribution
 
 \newline
 Remember that we have learned in beginner class of statistics and probability that there are different definitions of probability that have been suggested in the course of the development of probability theory two of these definitions are called relative frequency definition of probability and subjective definition of probability.
@@ -37,9 +37,9 @@ $f(\theta|x)$ is the posterior distribution
 $L(\theta;x)$ is the Likelihood 
 
 \newline
-$f(x)$ is the marginal distribution of the data $x$ or the the normalizing constant and it is less important in Bayesian inference since it is a function of the $x$ which are fixed, dropping out this  normalizing constant leads the posterior density $f(\theta|x)$ to lose some properties like integration to 1 (improper density ) over the domain of $\theta$ but this is not a big deal since we are usually not interested in integrating the function but ratherin maximising it, so multiplying this function with the constant does not change the $\theta$ that corresponds to the maximum point (MAP).
+$f(x)$ is the marginal distribution of the data $x$ or the the normalizing constant and it is less important in Bayesian inference since it is a function of the $x$ which are fixed, dropping out this  normalizing constant leads the posterior density $f(\theta|x)$ to lose some properties like integration to 1 (improper density ) over the domain of $\theta$ but this is not a big deal since we are usually not interested in integrating the function but ratherin maximising it, so multiplying this function with the constant does not change the $\theta$ that corresponds to the maximum point (MAP), in this case we can say that the posterior is proportional (not equal) to prior multiplyed with likelihood i.e $f(\theta|x) \sim f(\theta) L(\theta;x) $
 
-## Conjugate priors, the Posisson Model as an example
+## Conjugate priors, the Posisson ,odel as an example
 
 ## Posterior numerical integration 
 
