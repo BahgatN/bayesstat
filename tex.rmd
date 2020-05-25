@@ -37,7 +37,7 @@ $f(\theta|x)$ is the posterior distribution
 $L(\theta;x)$ is the Likelihood 
 
 \newline
-$f(x)$ is the marginal distribution of the data $x$ or the the normalizing constant and it is less important in Bayesian inference since it is a function of the $x$ which are fixed, dropping out this  normalizing constant leads the posterior density $f(\theta|x)$ to lose some properties like integration to 1 (improper density ) over the domain of $\theta$ but this is not a big deal since we are usually not interested in integrating the function but ratherin maximising it, so multiplying this function with the constant does not change the $\theta$ that corresponds to the maximum point (MAP), in this case we can say that the posterior is proportional (not equal) to prior multiplyed with likelihood i.e $f(\theta|x) \sim f(\theta) L(\theta;x)$
+$f(x)$ is the marginal distribution of the data $x$ or the the normalizing constant and it is less important in Bayesian inference since it is a function of the $x$ which are fixed, dropping out this  normalizing constant leads the posterior density $f(\theta|x)$ to lose some properties like integration to 1 (improper density ) over the domain of $\theta$ but this is not a big deal since we are usually not interested in integrating the function but ratherin maximising it, so multiplying this function with the constant does not change the $\theta$ that corresponds to the maximum point (MAP), in this case we can say that the posterior is proportional (not equal) to prior multiplyed with likelihood i.e $f(\theta|x) \propto f(\theta) L(\theta;x)$
 
 ## Conjugate priors, the Posisson model as an example
 
