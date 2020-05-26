@@ -43,6 +43,8 @@ $f(x)$ is the marginal distribution of the data $x$ or the the normalizing const
 
 ## Posterior numerical integration 
 
+Let $X_{1},X_{2} . . . , X_{n_{x}}$ denote the numbers of children for the $n_{x}$ women without college degrees and $Y_{1},Y_{2} . . . , Y_{n_{y}}$ be the data for the $n_{y}$ women with degrees. For this example, we will use the following sampling models:
+
 ## Quick review of BEST R Package
 
 
