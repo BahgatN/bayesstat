@@ -46,6 +46,17 @@ As we know for such random variable $E[X|\theta] = \theta$ and $Var[X|\theta] = 
 \newline
 Now suppose that there is a sample $x_{1},x_{2} . . . , x_{n}$ of $n$ independent and identically distributed (iid) observations or realization of the random variable $X \sim pois(\theta)$, then joint density function pdf or the likelihood function is 
 $$f(x_1,x_2,...,x_n|\theta) = \prod_{i=1}^{i=n}f(x_i|\theta) =  \prod_{i=1}^{i=n} \frac{1}{y_{i}!}\theta^{y_{i}}e^{-\theta}$$
+\newline 
+For now we will work with a class of conjugate prior distributions that will
+make posterior calculations simple.A class of prior densities is
+conjugate for a sampling model p(y1, . . . , yn|) if the posterior distribution is
+also in the class. For the Poisson sampling model, our posterior distribution
+for  has the following form:
+
+This means that whatever our conjugate class of densities is, it will have
+to include terms like c1e−c2 for numbers c1 and c2. The simplest class of
+such densities includes only these terms, and their corresponding probability
+distributions are known as the family of gamma distributions.
 
 \newline
 Again we want to infer about the Posisson pdf parameter namely $\theta$ given the data at hand, this uncertain positive quantity $\theta$ has a gamma distribution with two parameters $\alpha$ and $\beta$,i.e.
