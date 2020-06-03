@@ -4,7 +4,6 @@ author: "Bahgat Nassour"
 output: html_document
 ---
 
-
 ## Basics of Bayesian inference
 
 Bayes's Rule formula 
@@ -40,10 +39,62 @@ $L(\theta;x)$ is the Likelihood
 $f(x)$ is the marginal distribution of the data $x$ or the the normalizing constant and it is less important in Bayesian inference since it is a function of the $x$ which are fixed, dropping out this  normalizing constant leads the posterior density $f(\theta|x)$ to lose some properties like integration to 1 (improper density ) over the domain of $\theta$ but this is not a big deal since we are usually not interested in integrating the function but ratherin maximising it, so multiplying this function with the constant does not change the $\theta$ that corresponds to the maximum point (MAP), in this case we can say that the posterior is proportional (not equal) to prior multiplyed with likelihood i.e $f(\theta|x) \propto f(\theta) L(\theta;x)$
 
 ## Conjugate priors, the Posisson model as an example
+Suppose we have a random variable $X$ has a Poisson distribution with mean $\theta$ i.e. 
+$$ Pr(X=x|\theta) = \frac{\theta^{x} e^ {-\theta}}{x!} : x \in\{0, 1, 2, ...\} $$
+As we know for such random variable $E[X|\theta] = \theta$ and $Var[X|\theta] = \theta$
+
+\newline
+Now suppose that there is a sample $x_{1},x_{2} . . . , x_{n}$ of $n$ independent and identically distributed (iid) observations or realization of the random variable $X \sim pois(\theta)$, then joint density function pdf or the likelihood function is 
+$$f(x_1,x_2,...,x_n|\theta) = \prod_{i=1}^{i=n}f(x_i|\theta) =  \prod_{i=1}^{i=n} \frac{1}{y_{i}!}\theta^{y_{i}}e^{-\theta}$$
+
+\newline
+Again we want to infer about the Posisson pdf parameter namely $\theta$ given the data at hand, this uncertain positive quantity $\theta$ has a gamma distribution with two parameters $\alpha$ and $\beta$,i.e.
+$$p(\theta) = \frac{\beta^{\alpha}}{\Gamma(\alpha)}\theta^{\alpha-1}e^{-\beta\theta} : \alpha, \beta > 0$$
+this is anyway the prior distribution which reflects our prior information or beleif about $\theta$,this distribution could take diffrent shapes based on the two parameters $\alpha$ and $\beta$ as we see below ,
+
+\newline
+```{r pressure, echo=FALSE}
+par(mar=c(3,3,1,1),mgp=c(1.75,.75,0))
+par(mfrow=c(2,3))
+
+a<-1 ; b<-1
+x<-seq(.001,10,length=100)
+plot(x, dgamma(x,a,b),type="l",
+     xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
+mtext(expression(italic(paste(alpha," = 1 ",beta," = 1",sep=""))),side=3,line=.12,cex=.8)
+
+a<-2 ; b<-2
+x<-seq(.001,10,length=100)
+plot(x, dgamma(x,a,b),type="l",
+     xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
+mtext(expression(italic(paste(alpha," = 2 ",beta," = 2",sep=""))),side=3,line=.12,cex=.8)
+
+a<-4 ; b<-4
+x<-seq(.001,10,length=100)
+plot(x, dgamma(x,a,b),type="l",
+     xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
+mtext(expression(italic(paste(alpha," = 4 ",beta," = 4",sep=""))),side=3,line=.12,cex=.8)
+
+a<-2 ; b<-1
+x<-seq(.001,10,length=100)
+plot(x, dgamma(x,a,b),type="l",
+     xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
+mtext(expression(italic(paste(alpha," = 2 ",beta," = 1",sep=""))),side=3,line=.12,cex=.8)
+
+a<-8 ; b<-4
+x<-seq(.001,10,length=100)
+plot(x, dgamma(x,a,b),type="l",
+     xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
+mtext(expression(italic(paste(alpha," = 8 ",beta," = 4",sep=""))),side=3,line=.12,cex=.8)
+
+a<-32 ; b<-16
+x<-seq(.001,10,length=100)
+plot(x, dgamma(x,a,b),type="l",
+     xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
+mtext(expression(italic(paste(alpha," = 32 ",beta," = 16",sep=""))),side=3,line=.12,cex=.8)
+```
 
 ## Posterior numerical integration 
-
-Let $X_{1},X_{2} . . . , X_{n_{x}}$ denote the numbers of children for the $n_{x}$ women without college degrees and $Y_{1},Y_{2} . . . , Y_{n_{y}}$ be the data for the $n_{y}$ women with degrees. For this example, we will use the following sampling models:
 
 ## Quick review of BEST R Package
 
