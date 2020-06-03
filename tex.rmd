@@ -4,7 +4,7 @@ author: "Bahgat Nassour"
 output: html_document
 ---
 
-## Basics of Bayesian inference
+## Basics of Bayesian inference 
 
 Bayes's Rule formula 
 
