@@ -1,4 +1,4 @@
-# Simulate different gamma densities
+# Simulate different gamma densities 
 par(mar=c(3,3,1,1),mgp=c(1.75,.75,0))
 par(mfrow=c(2,3))
 
