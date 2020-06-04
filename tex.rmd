@@ -6,7 +6,7 @@ output: html_document
 
 ## Basics of Bayesian inference 
 
-Bayes's Rule formula 
+Bayes's Rule formula  
 
 $$ P(A|B) = \frac{P(A)P(B|A)}{P(B)} $$
 this classical formula is the fundamental in the statistical Bayesian inference theory
