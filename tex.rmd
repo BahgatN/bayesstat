@@ -6,7 +6,7 @@ output: html_document
 
 ## Basics of Bayesian inference 
 
-Bayes's Rule formula  
+Bayes's Rule formula 
 
 $$ P(A|B) = \frac{P(A)P(B|A)}{P(B)} $$
 this classical formula is the fundamental in the statistical Bayesian inference theory
@@ -45,17 +45,19 @@ As we know for such random variable $E[X|\theta] = \theta$ and $Var[X|\theta] = 
 
 \newline
 Now suppose that there is a sample $x_{1},x_{2} . . . , x_{n}$ of $n$ independent and identically distributed (iid) observations or realization of the random variable $X \sim pois(\theta)$, then joint density function pdf or the likelihood function is 
-$$f(x_1,x_2,...,x_n|\theta) = \prod_{i=1}^{i=n}f(x_i|\theta) =  \prod_{i=1}^{i=n} \frac{1}{y_{i}!}\theta^{y_{i}}e^{-\theta}$$
+$$f(x_1,x_2,...,x_n|\theta) = \prod_{i=1}^{i=n}f(x_i|\theta) =  \prod_{i=1}^{i=n} \frac{1}{x_{i}!}\theta^{x_{i}}e^{-\theta}$$
 \newline 
-For now we will work with a class of conjugate prior distributions that will
-make posterior calculations simple.A class of prior densities is
-conjugate for a sampling model p(y1, . . . , yn|) if the posterior distribution is
-also in the class. For the Poisson sampling model, our posterior distribution
-for  has the following form:
+Now we will work with a class of conjugate prior distributions that will
+make posterior calculations simple.
 
+\newline 
+
+In general a class of prior densities is conjugate for a sampling model $p(x_1,x_2,...,x_n|\theta)$ if the posterior distribution is also in that class. For the Poisson sampling model, our posterior distribution for $\theta$ has the following form:
+
+$$p(\theta|x) \propto p(\theta) p(x_1,x_2,...,x_n|\theta)$$
+$$\propto p(\theta)\theta^{\sum y_{i}}e^{-n\theta}$$
 This means that whatever our conjugate class of densities is, it will have
-to include terms like c1e−c2 for numbers c1 and c2. The simplest class of
-such densities includes only these terms, and their corresponding probability
+to include terms like $\theta^{c_{1}}e^{-c_{2}\theta}$ for numbers $c_{1}$ and $c_{2}$.The simplest class of such densities includes only these terms, and their corresponding probability
 distributions are known as the family of gamma distributions.
 
 \newline
@@ -105,6 +107,18 @@ plot(x, dgamma(x,a,b),type="l",
 mtext(expression(italic(paste(alpha," = 32 ",beta," = 16",sep=""))),side=3,line=.12,cex=.8)
 ```
 
+\newline 
+Now we are done and we just have to calculate analytically the posterior distribution of $\theta$.
+
+$$  p(\theta|x_1,x_2,...,x_n) = \frac{p(\theta) p(x_1,x_2,...,x_n|\theta)}{p(x_1,x_2,...,x_n)}$$
+$$ p(\theta|x_1,x_2,...,x_n)  = (\theta^{\alpha-1}e^{-\beta\theta})(\theta^{\sum y_{i}}e^{-n\theta})(c(x_1,x_2,...,x_n,\alpha, \beta))$$
+$$ p(\theta|x_1,x_2,...,x_n)  = (\theta^{\alpha + \sum y_{i} - 1}e^{(-b+n)\theta}) (c(x_1,x_2,...,x_n,\alpha, \beta))$$
+$$ p(\theta|x_1,x_2,...,x_n) \propto (\theta^{\alpha + \sum y_{i} - 1}e^{(-b+n)\theta}) $$
+
+This is evidently a gamma distribution i.e $(\theta|x_1,x_2,...,x_n) \sim gamma(\alpha + \sum y_{i}, n + \beta )$
+The posterior expectation of $\theta$ is a convex combination of the prior expectation and the sample average:
+$$ E[\theta|x_1,x_2,...,x_n] = \frac{a + \sum y_{i}}{b + n}$$
+Let’s try to obtain a deeper understanding by takeing a real world example.
 ## Posterior numerical integration 
 
 ## Quick review of BEST R Package
