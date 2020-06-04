@@ -1,5 +1,5 @@
 ---
-title: "Crash course in Bayesian inference"
+title: "t-Test Bayesian Estimation"
 author: "Bahgat Nassour"
 output: html_document
 ---
