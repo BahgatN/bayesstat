@@ -119,6 +119,7 @@ This is evidently a gamma distribution i.e $(\theta|x_1,x_2,...,x_n) \sim gamma(
 The posterior expectation of $\theta$ is a convex combination of the prior expectation and the sample average:
 $$ E[\theta|x_1,x_2,...,x_n] = \frac{a + \sum y_{i}}{b + n}$$
 Let’s try to obtain a deeper understanding by takeing a real world example.
+
 ## Posterior numerical integration 
 
 ## Quick review of BEST R Package
