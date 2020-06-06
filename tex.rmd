@@ -1,5 +1,5 @@
 ---
-title: "t-Test Bayesian Estimation"
+title: "Crash Course in Bayesian Statistics in R"
 author: "Bahgat Nassour"
 output: html_document
 ---
@@ -94,7 +94,7 @@ plot(x, dgamma(x,a,b),type="l",
      xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
 mtext(expression(italic(paste(alpha," = 2 ",beta," = 1",sep=""))),side=3,line=.12,cex=.8)
 
-a<-8 ; b<-4
+a <-8 ; b <-4
 x<-seq(.001,10,length=100)
 plot(x, dgamma(x,a,b),type="l",
      xlab=expression(theta), ylab=expression(italic(paste("p(",theta,")",sep=""))))
@@ -112,16 +112,58 @@ Now we are done and we just have to calculate analytically the posterior distrib
 
 $$  p(\theta|x_1,x_2,...,x_n) = \frac{p(\theta) p(x_1,x_2,...,x_n|\theta)}{p(x_1,x_2,...,x_n)}$$
 $$ p(\theta|x_1,x_2,...,x_n)  = (\theta^{\alpha-1}e^{-\beta\theta})(\theta^{\sum y_{i}}e^{-n\theta})(c(x_1,x_2,...,x_n,\alpha, \beta))$$
-$$ p(\theta|x_1,x_2,...,x_n)  = (\theta^{\alpha + \sum y_{i} - 1}e^{(-b+n)\theta}) (c(x_1,x_2,...,x_n,\alpha, \beta))$$
-$$ p(\theta|x_1,x_2,...,x_n) \propto (\theta^{\alpha + \sum y_{i} - 1}e^{(-b+n)\theta}) $$
+$$ p(\theta|x_1,x_2,...,x_n)  = (\theta^{\alpha + \sum x_{i} - 1}e^{(-b+n)\theta}) (c(x_1,x_2,...,x_n,\alpha, \beta))$$
+$$ p(\theta|x_1,x_2,...,x_n) \propto (\theta^{\alpha + \sum x_{i} - 1}e^{(-b+n)\theta}) $$
 
-This is evidently a gamma distribution i.e $(\theta|x_1,x_2,...,x_n) \sim gamma(\alpha + \sum y_{i}, n + \beta )$
+This is evidently a gamma distribution i.e $(\theta|x_1,x_2,...,x_n) \sim gamma(\alpha + \sum x_{i}, n + \beta )$
 The posterior expectation of $\theta$ is a convex combination of the prior expectation and the sample average:
-$$ E[\theta|x_1,x_2,...,x_n] = \frac{a + \sum y_{i}}{b + n}$$
+$$ E[\theta|x_1,x_2,...,x_n] = \frac{a + \sum x_{i}}{b + n}$$
 Let’s try to obtain a deeper understanding by takeing a real world example.
+
+\newline 
+Suppose we have data about the number of children of of women for some ethnic group $A$
+```{r }
+# data 
+x <- c(2, 2, 1, 1, 2, 2, 1, 2, 1, 0, 2, 1, 1, 2, 0, 2, 2, 0, 2, 1, 0, 0, 3, 6, 
+       1, 6, 4, 0, 3, 2, 0, 1, 0, 0, 0, 3, 0, 0, 0, 0, 0, 1, 0, 4, 2, 1, 0, 0, 
+       1, 0, 3, 2, 5, 0, 1, 1, 2, 1, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 2, 4, 1, 
+       1, 1, 2, 0, 1, 1, 1, 1, 0, 2, 3, 2, 0, 2, 1, 3, 1, 3, 2, 2, 3, 2, 0, 0, 
+       0, 1, 0, 0, 0, 1, 2, 0, 3, 3, 0, 1, 2, 2, 2, 0, 6, 0, 0, 0, 2, 0, 1, 1, 
+       1, 3, 3, 2, 1, 1, 0, 1, 0, 0, 2, 0, 2, 0, 1, 0, 2, 0, 0, 2, 2, 4, 1, 2, 
+       3, 2, 0, 0, 0, 1, 0, 0, 1, 5, 2, 1, 3, 2, 0, 2, 1, 1, 3, 0, 5, 0, 0, 2, 
+       4, 3, 4, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 2, 0, 0, 1, 1, 0, 2, 1, 3, 3, 2, 
+       2, 0, 0, 2, 3, 2, 4, 3, 3, 4, 0, 3, 0, 1, 0, 1, 2, 3, 4, 1, 2, 6, 2, 1, 
+       2, 2)
+
+n <- length(x) # sample size 
+s <- sum(x)    # sum of x_i
+
+# plot the data 
+plot(table(x), type="h",
+     xlab=expression(italic(x)),
+     ylab=expression(italic(n(x))),col=gray(.5) ,lwd=3)
+mtext("Number of children in group A",side=3)
+
+```
+
+The appropriate model of this data is the Poisson model with  the parameter $\theta$ if we suppose the our prior belief about the birth rate follows a gamma distribution with $\alpha = 2$ and $\beta = 1$ then $(\theta|n = 218, \sum y_{i} = 305) \sim gamma (2 + 305, 218 + 1 )$, since we know now the Posterior distribution then we can get inference about $\theta$ namely Posterior means, modes and $95%$ quantile-based confidence intervals, Bayesian HDI and Posterior predictive  distribution (we will take about them later). Now let us work on with code 
+
+```{r }
+# prior parameter
+a <-  2 ; b <-  1
+(a+s)/(b+n)   # posterior mean (our estimation of theta)
+xtheta<-seq(0,5,length=1000) # parameter space
+plot(xtheta,dgamma(xtheta,a+s,b+n),type="l", lwd = 2, col= "black",xlab=expression(theta),
+     ylab=expression(paste(italic("p("),theta,"|",x[1],"...",x[n],")",sep="")))
+lines(xtheta,dgamma(xtheta,a,b),type="l",lwd=2, col = "grey")
+legend("topright",legend=c("prior","posterior"),
+       lwd = 2,col=c("grey","black"))
+```
+
+you can download the r code used  from my bayesstat repository <https://github.com/BahgatN/bayesstat>
 
 ## Posterior numerical integration 
 
 ## Quick review of BEST R Package
 
-
+## References
