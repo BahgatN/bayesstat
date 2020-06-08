@@ -117,7 +117,7 @@ $$ p(\theta|x_1,x_2,...,x_n) \propto (\theta^{\alpha + \sum x_{i} - 1}e^{(-b+n)\
 
 This is evidently a gamma distribution i.e $(\theta|x_1,x_2,...,x_n) \sim gamma(\alpha + \sum x_{i}, n + \beta )$
 The posterior expectation of $\theta$ is a convex combination of the prior expectation and the sample average:
-$$ E[\theta|x_1,x_2,...,x_n] = \frac{a + \sum x_{i}}{b + n}$$
+$$ E[\theta|x_1,x_2,...,x_n] = \frac{\alpha + \sum x_{i}}{\beta + n}$$
 Let’s try to obtain a deeper understanding by takeing a real world example.
 
 \newline 
