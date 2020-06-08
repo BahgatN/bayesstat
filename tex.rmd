@@ -1,5 +1,5 @@
 ---
-title: "Crash Course in Bayesian Statistics in R"
+title: "Crash Course in Bayesian Statistics with R"
 author: "Bahgat Nassour"
 output: html_document
 ---
