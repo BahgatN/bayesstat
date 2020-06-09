@@ -18,7 +18,7 @@ $$ f(\theta|x) = \frac{f(\theta)f(x|\theta)}{f(x)} =  \frac{f(\theta)L(\theta;x)
 Under this formula we can see the first fundamental difference between the Bayesian approach and the frequentist approach, in Bayesian inference we treat the data $x$ as fixed and the parameter of interest $\theta$ as random variable, that means $\theta$ has a distribution
 
 \newline
-Remember that we have learned in beginner class of statistics and probability that there are different definitions of probability that have been suggested in the course of the development of probability theory two of these definitions are called relative frequency definition of probability and subjective definition of probability.
+Remember that we have learned in beginner class of statistics and probability that there are different definitions of probability that have been suggested in the course of the development of probability theory two of these definitions are called relative frequency definition and subjective definition of probability.
 
 \newline
 So treating data as fixed and the parameter as random in Bayesian inference will radically change the intereprtation of very basics concepts in statisics like for example $p$ value, hypothesis testing or condidence interval ..etc.  
